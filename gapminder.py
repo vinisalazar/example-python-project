@@ -52,7 +52,7 @@ def create_df_views(df):
     return output["gdpPercap"], output["lifeExp"], output["pop"], output["cat"]
 
 
-def plot_gdp_growth_by_continent(gdp_df, outdir, save=False):
+def plot_gdp_growth_by_continent(gdp_df, outdir=".", save=False):
     fig, ax = plt.subplots()
     gb = gdp_df.groupby("continent").mean().T.copy()
     gb.index = [i[-4:] for i in gb.index]
@@ -66,7 +66,7 @@ def plot_gdp_growth_by_continent(gdp_df, outdir, save=False):
         plt.show()
 
 
-def plot_gdp_50_years_diff_by_continent(gdp_df, outdir, save=False):
+def plot_gdp_50_years_diff_by_continent(gdp_df, outdir=".", save=False):
     fig, ax = plt.subplots()
     gb = gdp_df[["continent", "gdpPercap_1957", "gdpPercap_2007"]].reset_index().copy()
     gb = gb.melt(
@@ -89,7 +89,7 @@ def plot_gdp_50_years_diff_by_continent(gdp_df, outdir, save=False):
         plt.show()
 
 
-def plot_world_development_by_year(cat_df, outdir, year="2007", save=False):
+def plot_world_development_by_year(cat_df, year="2007", outdir=".", save=False):
 
     """
     Creates scatter plot of world development for a particular year.
@@ -98,6 +98,10 @@ def plot_world_development_by_year(cat_df, outdir, year="2007", save=False):
 
     From https://www.kaggle.com/tklimonova/gapminder-graph-using-python
     """
+
+    # Input validation
+    years = list(cat_df['year'].unique())
+    assert year in years, f"No data available for that year. Choose from:\n{years}"
 
     cat = cat_df.query(f'year == "{year}"')
     np_pop = np.array(cat["pop"])
@@ -117,7 +121,7 @@ def plot_world_development_by_year(cat_df, outdir, year="2007", save=False):
     _ = plt.xscale("log")
     _ = plt.xlabel("GDP per Capita [in USD]")
     _ = plt.ylabel("Life Expectancy [in years]")
-    _ = plt.title("World Development in 2007")
+    _ = plt.title(f"World Development in {year}")
     _ = plt.xticks([1000, 10000, 100000], ["1k", "10k", "100k"])
     if save:
         plt.savefig(Path(outdir).joinpath(f"World_development_in_{year}.png"))
@@ -125,7 +129,7 @@ def plot_world_development_by_year(cat_df, outdir, year="2007", save=False):
         plt.show()
 
 
-def main(custom_file, plots, outdir):
+def main(custom_file, plots, outdir="."):
 
     print("Loading data.")
     df = load_gapminder_all(custom_file=custom_file)
