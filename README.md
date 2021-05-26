@@ -17,7 +17,7 @@ The goal here is to try and make the project a little more organised. Feel free 
 around, and rename them.
 
 Checklist:
-- [ ] create `paper.md` file simulating a project doc.
+- [x] create `paper.md` file simulating a project doc.
 - [x] create `gapminder.py` file with functions to load and plot the data.
 - [ ] create `knit.py` script to generate the paper.
 - [ ] create `setup.py` install script to install the two Python files.
