@@ -21,5 +21,5 @@ Checklist:
 - [x] create `gapminder.py` file with functions to load and plot the data.
 - [ ] create `knit.py` script to generate the paper.
 - [ ] create `setup.py` install script to install the two Python files.
-- [ ] create `demonstration.ipynb` notebook to demonstrate imports from `functions.py`
+- [x] create `demonstration.ipynb` notebook to demonstrate imports from `functions.py`
 - [x] create `.png` figure files that go in the paper.
