@@ -5,7 +5,7 @@ with open("README.md") as f:
 
 setuptools.setup(
     name="gapminder_example",
-    version="0.0.1",
+    version="0.0.2",
     author="Vini Salazar",
     author_email="17276653+vinisalazar@users.noreply.github.com",
     description="Example Python project with Gapminder data, to be used in Carpentries lessons.",
